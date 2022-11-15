@@ -1,5 +1,6 @@
 import { useState,useEffect } from "react"
 import { ethers } from "ethers";
+import './App.css'
 
 
 const Addressinput = () => {
@@ -220,13 +221,8 @@ const Addressinput = () => {
         })
  }
 
-useEffect(()=>{
- 
-},[])
 
-
-
-const vote = () =>{
+const vote1 = () =>{
  var provider = new ethers.providers.Web3Provider(window.ethereum)
  var signer = provider.getSigner();
 
@@ -317,27 +313,133 @@ const vote = () =>{
 
  var contract = new ethers.Contract(address,abi,signer)
  contract.VoteCandidateOne().then(console.log)
- contract.VoteCandidateTwo().then(console.log)
 }
 
+const vote2 = () =>{
+    var provider = new ethers.providers.Web3Provider(window.ethereum)
+    var signer = provider.getSigner();
+   
+    var abi = [
+            {
+                "inputs": [
+                    {
+                        "internalType": "string",
+                        "name": "_CandidateOne",
+                        "type": "string"
+                    },
+                    {
+                        "internalType": "string",
+                        "name": "_CandidateTwo",
+                        "type": "string"
+                    }
+                ],
+                "stateMutability": "nonpayable",
+                "type": "constructor"
+            },
+            {
+                "inputs": [],
+                "name": "VoteCandidateOne",
+                "outputs": [],
+                "stateMutability": "nonpayable",
+                "type": "function"
+            },
+            {
+                "inputs": [],
+                "name": "VoteCandidateTwo",
+                "outputs": [],
+                "stateMutability": "nonpayable",
+                "type": "function"
+            },
+            {
+                "inputs": [],
+                "name": "CandidateOne",
+                "outputs": [
+                    {
+                        "internalType": "string",
+                        "name": "",
+                        "type": "string"
+                    }
+                ],
+                "stateMutability": "view",
+                "type": "function"
+            },
+            {
+                "inputs": [],
+                "name": "CandidateOneCount",
+                "outputs": [
+                    {
+                        "internalType": "uint256",
+                        "name": "",
+                        "type": "uint256"
+                    }
+                ],
+                "stateMutability": "view",
+                "type": "function"
+            },
+            {
+                "inputs": [],
+                "name": "CandidateTwo",
+                "outputs": [
+                    {
+                        "internalType": "string",
+                        "name": "",
+                        "type": "string"
+                    }
+                ],
+                "stateMutability": "view",
+                "type": "function"
+            },
+            {
+                "inputs": [],
+                "name": "CandidateTwoCount",
+                "outputs": [
+                    {
+                        "internalType": "uint256",
+                        "name": "",
+                        "type": "uint256"
+                    }
+                ],
+                "stateMutability": "view",
+                "type": "function"
+            }
+        ]
+   
+    var contract = new ethers.Contract(address,abi,signer)
+    contract.VoteCandidateTwo().then(console.log)
+ }
 
     return(
         <>
-         <div>
+         
+   <div className="container">   
+   <div class="box">  
+   <div style={{margin:'50px'}}>
    <h1 className="name">Name : Candidate 1 {defaultname1}</h1>
    <h3>No of Votes : {defaultvotes1}</h3>
-   <button onClick={vote}>Vote</button>
-   </div>
-   <>
+   <button class="btn btn-light" style={{margin:'25px'}} onClick={vote1}>Vote</button>
+   </div> 
+   <div style={{margin:'50px'}}>
    <h1 className="name">Name : Candidate 2 {defaultname2}</h1>
     <h3>No of Votes : {defaultvotes2}</h3>
-    <button onClick={vote}>Vote</button>
-    </>
+    <button class="btn btn-light" style={{margin:'25px'}} onClick={vote2}>Vote</button>
+    </div>
+    </div>   
       
         <form onSubmit={addAccount}>
-        <input className="ads-inp" onChange={(e)=>setaddress(e.target.value)} value={address}></input>
-        <button className="submit" type="submit">Submit</button>
+        
+  <div class="input-group mb-2 mr-sm-2 ads-inp">
+    
+    <div class="input-group-prepend">
+      <div class="input-group-text">Contract Address</div>
+    </div>
+    <input type="text" class="form-control" id="inlineFormInputGroupUsername2" placeholder="0x" onChange={(e)=>setaddress(e.target.value)} value={address} />
+  </div>
+  <br></br>
+        <button type="submit" class="btn btn-light">Submit</button>
+
+
         </form>
+        </div>
         </>
     )
 }

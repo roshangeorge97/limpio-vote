@@ -1,8 +1,31 @@
+
+
 #root {
   max-width: 1280px;
   margin: 0 auto;
   padding: 2rem;
   text-align: center;
+}
+
+.box{
+  display: flex;
+  justify-content: center;
+}
+
+body{
+  background-color: #E5DADA;
+}
+
+.submit{
+  background-color: #E5DADA;
+}
+
+.container{
+  padding: 90px;
+  color: #E5DADA;
+  margin: auto;
+  background-color: #CC444B;
+  border-radius: 20px;
 }
 
 .logo {
@@ -38,4 +61,15 @@
 
 .read-the-docs {
   color: #888;
+}
+
+.ads-inp{
+  width: 50%;
+  margin: auto;
+
+}
+
+.input-group-text{
+  border-bottom-right-radius: 0%;
+  border-top-right-radius:0% ;
 }
